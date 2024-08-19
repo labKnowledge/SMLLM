@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { Button, TextField, Paper, Typography, CircularProgress, Snackbar, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import { Send as SendIcon } from 'lucide-react';
+import { completeCall } from '../api/ai_api';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -42,38 +43,17 @@ const ContentCreator: React.FC = () => {
         setLoading(true);
         setError('');
 
-        try {
-            // Replace with actual API call
-            const response = await fetch('https://openhost-ai.18hbq0.easypanel.host/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    messages: [
-                        { role: "system", content: "You are SmartAssistant, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests." },
-                        { role: "user", content: prompt }
-                    ]
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to generate post');
-            }
-
-            const data: OpenAIResponse = await response.json();
-            setGeneratedPost(data.choices[0].text.trim());
-        } catch (err) {
-            setError('An error occurred while generating the post. Please try again.');
-        } finally {
+        completeCall(prompt).then((d)=>{
             setLoading(false);
-        }
+            setGeneratedPost(d.choices[0].message.content)
+        })
+       
     };
 
     return (
         <StyledPaper elevation={3}>
             <Typography variant="h4" gutterBottom>
-                OpenAI Post Generator
+                Small Language Model Acting Big
             </Typography>
             <Form onSubmit={handleSubmit}>
                 <TextField
