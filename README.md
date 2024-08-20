@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
+# SMLLM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based web application that uses a small language model to generate content based on user prompts. It features a clean, Material-UI styled interface and communicates with an AI API to produce text content.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User-friendly interface for entering prompts
+- AI-powered content generation
+- Real-time loading feedback
+- Error handling with user notifications
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Before you begin, ensure you have met the following requirements:
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js (v14 or later recommended)
+- Yarn package manager
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To install the Content Creator, follow these steps:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
+   ```
+   git clone https://github.com/labKnowledge/SMLLM.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd SMLLM
+   ```
+3. Install the dependencies:
+   ```
+   yarn install
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Usage
+
+To use the Content Creator, follow these steps:
+
+1. Start the development server:
+   ```
+   yarn start
+   ```
+2. Open your web browser and navigate to `http://localhost:5173` (or the port specified by your React setup).
+3. Enter a prompt in the text field and click "Generate Post" to create AI-generated content.
+
+## Project Structure
+
+The main components of this project are:
+
+- `ContentCreator.tsx`: The main React component that handles the UI and user interactions.
+- `ai_api.ts`: Contains the API call function to communicate with the AI service.
+
+## API Configuration
+
+The project uses an external AI API for content generation. The API endpoint is configured in `ai_api.ts`. Make sure the API endpoint is correct and accessible.
+
+## Customization
+
+You can customize the appearance of the application by modifying the styled components in `ContentCreator.tsx`. The project uses Material-UI, so you can refer to the [Material-UI documentation](https://mui.com/) for more styling options.
+
+## Contributing
+
+Contributions to the Content Creator project are welcome. Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+If you have any questions or feedback, please open an issue in the GitHub repository.
