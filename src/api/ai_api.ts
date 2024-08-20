@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export const completeCall = async (txt: string) => {
   const response = await openai.chat.completions.create({
     messages: [
-      { role: "system", content: "You are SmartAssistant, an AI assistant. Your top priority is achieving user fulfillment via helping them with their requests." },
+      { role: "system", content: `You are a useful Asistant AI. be useful`},
       { role: "user", content: txt }
     ],
     model: 'small',
@@ -22,6 +22,8 @@ export const streamChat = async (messages: OpenAI.Chat.ChatCompletionMessagePara
   const stream = await openai.chat.completions.create({
     messages,
     model: 'small',
+    max_tokens: 2048, 
+    temperature: 0.7,
     stream: true,
   });
 
