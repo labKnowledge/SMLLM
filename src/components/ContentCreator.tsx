@@ -26,7 +26,7 @@ const GeneratedContent = styled(Typography)(({ theme }) => ({
     border: '1px solid #e0e0e0',
 }));
 
-interface OpenAIResponse {
+export interface OpenAIResponse {
     choices: Array<{
         text: string;
     }>;
@@ -45,7 +45,8 @@ const ContentCreator: React.FC = () => {
 
         completeCall(prompt).then((d)=>{
             setLoading(false);
-            setGeneratedPost(d.choices[0].message.content)
+            setGeneratedPost(d.choices[0]?.message.content || "")
+            
         })
        
     };

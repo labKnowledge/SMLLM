@@ -15,7 +15,7 @@ import { streamChat } from '../api/ai_api';
 import OpenAI from 'openai';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -37,7 +37,7 @@ const MessageItem = styled(ListItem)<{ align: 'left' | 'right' }>(({ theme, alig
   marginBottom: theme.spacing(1),
 }));
 
-const MessageBubble = styled(Paper)<{ isUser: boolean }>(({ theme, isUser }) => ({
+const MessageBubble = styled(Paper)<{ isUser: boolean }>(({ theme }) => ({
   padding: theme.spacing(1, 2),
   borderRadius: 16,
   maxWidth: '70%',
@@ -124,15 +124,13 @@ const LetChatSmall: React.FC = () => {
                   components={{
                     code({node, className, children, ...props}) {
                       const match = /language-(\w+)/.exec(className || '')
-                      return match ? (
+                      return  match ? (
                         <SyntaxHighlighter
+                          children={String(children).replace(/\n$/, '')}
                           style={tomorrow}
                           language={match[1]}
                           PreTag="div"
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, '')}
-                        </SyntaxHighlighter>
+                        />
                       ) : (
                         <code className={className} {...props}>
                           {children}

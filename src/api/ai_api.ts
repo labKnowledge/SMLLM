@@ -22,7 +22,7 @@ export const streamChat = async (messages: OpenAI.Chat.ChatCompletionMessagePara
   const stream = await openai.chat.completions.create({
     messages,
     model: 'small',
-    max_tokens: 2048, 
+    max_tokens: 4048, 
     temperature: 0.7,
     stream: true,
   });
