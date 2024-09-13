@@ -64,7 +64,7 @@ export interface Message {
 const LetChatSmall: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([{role: "system", 
     content: 
-    `You're a health AI. Identify the patient's key health problems from their record. Highlight any concerning test results and their potential implications`}]);
+    import.meta.env.VITE_SYSTEM_MESSAGE}]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const chatListRef = useRef<HTMLUListElement>(null);
