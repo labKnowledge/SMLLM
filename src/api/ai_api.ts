@@ -10,7 +10,7 @@ let openai = null
   }catch(error){
     console.log("openAI initialization failed", error)
   }
-  
+
 export const completeCall = async (txt: string) => {
   const response = await openai?.chat.completions.create({
     messages: [
@@ -31,10 +31,11 @@ export const streamChat = async (messages: OpenAI.Chat.ChatCompletionMessagePara
     stream: true,
   });
 
-  for await (const chunk of stream) {
-    const content = chunk.choices[0]?.delta?.content || '';
-    if (content) {
-      onChunk(content);
+  if(stream)
+    for await (const chunk of stream) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      if (content) {
+        onChunk(content);
+      }
     }
-  }
 };
