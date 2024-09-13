@@ -45,7 +45,7 @@ const ContentCreator: React.FC = () => {
 
         completeCall(prompt).then((d)=>{
             setLoading(false);
-            setGeneratedPost(d.choices[0]?.message.content || "")
+            setGeneratedPost(d?.choices[0]?.message.content || "")
             
         })
        
